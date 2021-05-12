@@ -1,3 +1,3 @@
 # BananaGun
  Tiny react project by Askar Musin
-####tg: @mne_mojno
+#### tg: @mne_mojno
