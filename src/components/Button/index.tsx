@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { BUTTON_COLORS, BUTTON_SIZE, BUTTON_WIDTHS } from './constants';
 
 import s from './Button.module.scss';
-import './Button.scss';
 
 type ValueOf<T> = T[keyof T];
 
@@ -21,9 +20,9 @@ const Button: React.FC<IButtonProps> = ({
   color = BUTTON_COLORS.GREEN,
   size = BUTTON_SIZE.SMALL,
 }) => {
-  const colorClass = `btn__color-${color}`;
-  const sizeClass = `btn__size-${size}`;
-  const widthClass = `btn__width-${width}`;
+  const colorClass = s[`btn__color-${color}` as keyof typeof s];
+  const sizeClass = s[`btn__size-${size}` as keyof typeof s];
+  const widthClass = s[`btn__width-${width}` as keyof typeof s];
   return (
     <button type="button" className={cn(s.root, colorClass, sizeClass, widthClass)} onClick={onClick}>
       {children}
