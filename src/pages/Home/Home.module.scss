@@ -1,0 +1,36 @@
+@import '../../variables';
+
+.root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+.contentText {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 2;
+}
+
+.leftContent {
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 0;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  max-width: 35%;
+}
+
+.contentWrap {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.rightContent {
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 1;
+}

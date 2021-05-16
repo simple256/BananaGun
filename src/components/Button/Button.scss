@@ -1,0 +1,26 @@
+.btn {
+  &__color {
+    &-green {
+      background: #73d677;
+    }
+    &-yellow {
+      background: #f2cb07;
+    }
+  }
+  &__size {
+    &-small {
+      padding: 0 10px 5px;
+    }
+    &-big {
+      padding: 0 20px 9px;
+    }
+  }
+  &__width {
+    &-normal {
+      width: auto;
+    }
+    &-full {
+      width: 100%;
+    }
+  }
+}
