@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 
 import s from './Home.module.scss';
-import Button from '../../components/Button/index';
+import Button from '../../components/Button';
 import Layout from '../../components/Layout';
 import Parallax from '../../components/Parallax';
 
