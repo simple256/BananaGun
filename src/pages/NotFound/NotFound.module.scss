@@ -1,0 +1,59 @@
+@import "../../variables";
+
+.root {
+  background: #D93E30;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.errorCode {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 700px;
+  line-height: 818px;
+  display: flex;
+  letter-spacing: 4px;
+  position: fixed;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  width: 100vw;
+
+}
+
+.rocketTeamLogo {
+  display: flex;
+  top: 17%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+}
+
+.text {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-family: Karla;
+  font-style: normal;
+  height: 100vw;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  &-first {
+    color: $white;
+  }
+  &-second {
+    color: $dark;
+  }
+}
+
+.buttonReturn {
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
