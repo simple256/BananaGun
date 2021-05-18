@@ -1,39 +1,15 @@
 import React from 'react';
+import { A, usePath } from 'hookrouter';
+
+
+import { GENERAL_MENU } from '../../routes';
+import cn from 'classnames';
 
 import s from './Header.module.scss';
-
 import { ReactComponent as PokemonLogoSVG } from './assets/Logo.svg';
 
-interface IMenuItem {
-  id: number;
-  value: string;
-  link: string;
-}
-
-const MENU: IMenuItem[] = [
-  {
-    id: 1,
-    value: 'Home',
-    link: '#',
-  },
-  {
-    id: 2,
-    value: 'Pokédex',
-    link: '#',
-  },
-  {
-    id: 3,
-    value: 'Legendaries',
-    link: '#',
-  },
-  {
-    id: 4,
-    value: 'Documentation',
-    link: '#',
-  },
-];
-
-const Index = () => {
+const Header = () => {
+  const path = usePath();
   return (
     <div className={s.root}>
       <div className={s.wrap}>
@@ -41,10 +17,19 @@ const Index = () => {
           <PokemonLogoSVG />
         </div>
         <div className={s.menuWrap}>
-          {MENU.map(({ link, value, id }) => (
-            <a key={id} href={link} className={s.menuLink}>
-              {value}
-            </a>
+          {GENERAL_MENU.map(({ title, link }) => (
+            <A key={title}
+               href={link}
+               className={
+                 cn(
+                   s.menuLink,
+                   {
+                     [s.activeLink]: link === path
+                   }
+                   )
+               }>
+              {title}
+            </A>
           ))}
         </div>
       </div>
@@ -52,4 +37,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Header;
