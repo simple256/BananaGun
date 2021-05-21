@@ -11,6 +11,7 @@ interface IButtonProps {
   width?: ValueOf<typeof BUTTON_WIDTHS>;
   color?: ValueOf<typeof BUTTON_COLORS>;
   size?: ValueOf<typeof BUTTON_SIZE>;
+  className?: string;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -19,12 +20,13 @@ const Button: React.FC<IButtonProps> = ({
   width = BUTTON_WIDTHS.NORMAL,
   color = BUTTON_COLORS.GREEN,
   size = BUTTON_SIZE.SMALL,
+  className = '',
 }) => {
   const colorClass = s[`btn__color-${color}` as keyof typeof s];
   const sizeClass = s[`btn__size-${size}` as keyof typeof s];
   const widthClass = s[`btn__width-${width}` as keyof typeof s];
   return (
-    <button type="button" className={cn(s.root, colorClass, sizeClass, widthClass)} onClick={onClick}>
+    <button type="button" className={cn(s.root, colorClass, sizeClass, widthClass, className)} onClick={onClick}>
       {children}
     </button>
   );

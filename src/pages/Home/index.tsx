@@ -1,4 +1,6 @@
 import React from 'react';
+import { navigate } from 'hookrouter';
+
 import Header from '../../components/Header';
 
 import s from './Home.module.scss';
@@ -17,14 +19,19 @@ const HomePage = () => {
         <div className={s.leftContent}>
           <div className={s.contentText}>
             <Heading>
-              <h1>Find all your favorite Pokemon</h1>
+              <h1>
+                <b>Find</b>
+                <> all your favorite </>
+                <b>Pokemon</b>
+              </h1>
             </Heading>
             <Heading>
               <h3>You can know the type of Pokemon, its strengths, disadvantages and abilities</h3>
             </Heading>
           </div>
           <Button
-            onClick={() => true}
+            // EnumLink не работает с ENUM  onClick={() => navigate('/pokedex')}
+            onClick={() => navigate('/pokedex')}
             width={BUTTON_WIDTHS.NORMAL}
             size={BUTTON_SIZE.SMALL}
             color={BUTTON_COLORS.GREEN}>
