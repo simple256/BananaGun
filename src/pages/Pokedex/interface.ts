@@ -6,7 +6,7 @@ interface IData {
 }
 
 interface IPokemonData {
-  data: IData;
+  data: IData | null;
   isError: boolean;
   isLoading: boolean;
 }

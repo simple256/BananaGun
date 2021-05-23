@@ -10,7 +10,7 @@ import { ICardItem } from '../../components/PokemonCard/interface';
 import { IData, IPokemonData } from './interface';
 
 const usePokemons = () => {
-  const [data, setData] = useState<IData>({});
+  const [data, setData] = useState<IData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -19,7 +19,7 @@ const usePokemons = () => {
       setIsLoading(true);
       // const url = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
       try {
-        const result = await req('getPokemons');
+        const result: IData = await req<IData>('getPokemons');
         setData(result);
       } catch {
         setIsError(true);
@@ -48,12 +48,16 @@ function PokedexPage() {
   return (
     <div className={s.root}>
       <Heading>
-        <h4>
-          Total count is <b>{data.total}</b>
-        </h4>
+        {data?.total ? (
+          <h4>
+            Total count is <b>{data?.total}</b>
+          </h4>
+        ) : (
+          <></>
+        )}
       </Heading>
       <div className={s.content}>
-        {(data.pokemons as ICardItem[]).map((item: ICardItem) => (
+        {((data?.pokemons as ICardItem[]) || []).map((item: ICardItem) => (
           <PokemonCard key={item.name_clean} item={item} />
         ))}
       </div>
