@@ -3,8 +3,7 @@ import cn from 'classnames';
 import { BUTTON_COLORS, BUTTON_SIZE, BUTTON_WIDTHS } from './constants';
 
 import s from './Button.module.scss';
-
-type ValueOf<T> = T[keyof T];
+import { ValueOf } from '../../utils/types';
 
 interface IButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -12,6 +11,7 @@ interface IButtonProps {
   color?: ValueOf<typeof BUTTON_COLORS>;
   size?: ValueOf<typeof BUTTON_SIZE>;
   className?: string;
+  children?: JSX.Element;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -32,4 +32,4 @@ const Button: React.FC<IButtonProps> = ({
   );
 };
 
-export default Button;
+export default React.memo(Button);

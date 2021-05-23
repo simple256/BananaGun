@@ -14,4 +14,4 @@ const Heading: React.FC<IHeading> = ({ children, className }) => {
   return React.createElement(children?.type, { className }, children.props.children);
 };
 
-export default Heading;
+export default React.memo(Heading);

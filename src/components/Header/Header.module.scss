@@ -3,9 +3,10 @@
 .root {
   height: 93px;
   display: flex;
+  background: $third;
   justify-content: center;
   align-items: center;
-
+  position: sticky;
   box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
 }
 

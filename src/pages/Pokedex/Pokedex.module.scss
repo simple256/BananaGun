@@ -2,6 +2,9 @@
 
 .root {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
 

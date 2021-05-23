@@ -23,7 +23,7 @@ const NotFoundPage = () => {
         width={BUTTON_WIDTHS.NORMAL}
         size={BUTTON_SIZE.BIG}
         color={BUTTON_COLORS.YELLOW}>
-        Return
+        <>Return</>
       </Button>
     </div>
   );
