@@ -11,7 +11,7 @@ const Heading: React.FC<IHeading> = ({ children, className }) => {
   if (!(children?.type && children?.props?.children)) {
     return <></>;
   }
-  return React.createElement(children?.type, {className}, children.props.children);
+  return React.createElement(children?.type, { className }, children.props.children);
 };
 
 export default Heading;

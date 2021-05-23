@@ -9,9 +9,7 @@ import { ReactComponent as RocketTrioLogoSVG } from './assets/Team_Rocket_trio_O
 const NotFoundPage = () => {
   return (
     <div className={s.root}>
-      <div className={s.errorCode}>
-        404
-      </div>
+      <div className={s.errorCode}>404</div>
       <div className={s.rocketTeamLogo}>
         <RocketTrioLogoSVG />
       </div>

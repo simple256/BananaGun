@@ -2,13 +2,13 @@
   width: 351px;
   height: 136px;
   box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
-  background: #F6F7F9;
+  background: #f6f7f9;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
   margin-bottom: 45px;
   cursor: pointer;
-  transition: all ease-in-out .15s;
+  transition: all ease-in-out 0.15s;
 
   &:hover {
     transform: scale(1.03);
@@ -40,7 +40,7 @@
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  color: #4B4B4B;
+  color: #4b4b4b;
   margin-right: 12px;
 
   &:last-child {
@@ -68,7 +68,7 @@
 .pictureWrap {
   width: 232px;
   height: 100%;
-  background: linear-gradient(270deg, #B33327 0.15%, #D93E30 100%);
+  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
   position: absolute;
   right: 0;
   display: flex;
