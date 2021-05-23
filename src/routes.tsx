@@ -5,9 +5,9 @@ import PokedexPage from './pages/Pokedex';
 
 enum EnumLink {
   HOME = '/',
-  POKEDEX = './pokedex',
-  LEGENDARIES = './legendaries',
-  DOCUMENTATION = './documentation',
+  POKEDEX = '/pokedex',
+  LEGENDARIES = '/legendaries',
+  DOCUMENTATION = '/documentation',
 }
 
 interface IGeneralMenu {
@@ -39,27 +39,16 @@ const GENERAL_MENU: IGeneralMenu[] = [
   },
 ];
 
-// interface IAccMenu {
-//   [n: string]: () => JSX.Element;
-// }
+interface IAccMenu {
+  [n: string]: () => JSX.Element;
+}
 
 /**
  * FIXME: НЕ РАБОТАЕТ ENUM, всегда 404
  */
-// const routes = GENERAL_MENU.reduce((acc: IAccMenu, item: IGeneralMenu) => {
-//   acc[item.link] = item.component;
-//   return acc;
-// }, {});
+const routes = GENERAL_MENU.reduce((acc: IAccMenu, item: IGeneralMenu) => {
+  acc[item.link] = item.component;
+  return acc;
+}, {});
 
-/**
- * Вот так работает
- */
-const routes = {
-  '/': () => <HomePage />,
-  '/pokedex': () => <PokedexPage />,
-  '/legendaries': () => <EmptyPage title={'legendaries'} />,
-  '/documentation': () => <EmptyPage title={'documentation'} />,
-}
-
-export default routes;
-export {EnumLink, GENERAL_MENU};
+export { routes, EnumLink, GENERAL_MENU };
