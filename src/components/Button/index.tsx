@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { BUTTON_COLORS, BUTTON_SIZE, BUTTON_WIDTHS } from './constants';
 
 import s from './Button.module.scss';
-import { ValueOf } from '../../utils';
+import { ValueOf } from '../../utils/types';
 
 interface IButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
