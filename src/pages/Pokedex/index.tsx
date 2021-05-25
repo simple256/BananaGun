@@ -6,16 +6,20 @@ import s from './Pokedex.module.scss';
 
 import { useData } from '../../hook/getData';
 import { IPokemonData, PokemonRequest } from '../../interface/pokemon';
+import useDebounce from '../../hook/useDebounce';
 
 interface IQuery {
   name?: string;
+  limit?: number;
 }
 
 function PokedexPage() {
   const [searchValue, setSearchValue] = useState('');
-  const [query, setQuery] = useState<IQuery>({});
+  const [query, setQuery] = useState<IQuery>({ limit: 12 });
 
-  const { data, isError, isLoading }: IPokemonData = useData('getPokemons', query, [searchValue]);
+  const debounceValue = useDebounce(searchValue, 500);
+
+  const { data, isError, isLoading }: IPokemonData = useData('getPokemons', query, [debounceValue]);
   if (isLoading) {
     return <div className={s.root}>Loading...</div>;
   }

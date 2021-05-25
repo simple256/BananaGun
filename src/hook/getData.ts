@@ -28,4 +28,5 @@ export const useData = <T>(endpoint: string, query: object, deps: any[] = []) =>
     isLoading,
   };
 };
+
 export default useData;
