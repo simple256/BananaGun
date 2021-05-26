@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import HomePage from './pages/Home';
 import EmptyPage from './pages/Empty';
 import PokedexPage from './pages/Pokedex';
+import Pokemon, { PokemonProps } from './pages/Pokemon';
 
 enum EnumLink {
   HOME = '/',
   POKEDEX = '/pokedex',
   LEGENDARIES = '/legendaries',
   DOCUMENTATION = '/documentation',
+  POKEMON = '/pokedex/:id',
 }
 
+type AnyPropsWithChildren = PropsWithChildren<any>;
+
 interface IGeneralMenu {
-  component: () => JSX.Element;
+  component: (props: AnyPropsWithChildren) => JSX.Element;
   title: string;
   link: EnumLink;
+}
+
+interface IAccMenu {
+  [n: string]: (props: AnyPropsWithChildren) => JSX.Element;
 }
 
 const GENERAL_MENU: IGeneralMenu[] = [
@@ -39,14 +47,18 @@ const GENERAL_MENU: IGeneralMenu[] = [
   },
 ];
 
-interface IAccMenu {
-  [n: string]: () => JSX.Element;
-}
+const SECOND_ROUTES: IGeneralMenu[] = [
+  {
+    title: 'Pokemon',
+    link: EnumLink.POKEMON,
+    component: ({ id }: PokemonProps) => <Pokemon id={id} />,
+  },
+];
 
 /**
  * FIXME: НЕ РАБОТАЕТ ENUM, всегда 404
  */
-const routes = GENERAL_MENU.reduce((acc: IAccMenu, item: IGeneralMenu) => {
+const routes = [...GENERAL_MENU, ...SECOND_ROUTES].reduce((acc: IAccMenu, item: IGeneralMenu) => {
   acc[item.link] = item.component;
   return acc;
 }, {});

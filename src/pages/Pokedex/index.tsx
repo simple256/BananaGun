@@ -1,54 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PokemonCard from '../../components/PokemonCard';
 import Heading from '../../components/Heading';
 
-import req from '../../utils/request';
-
 import s from './Pokedex.module.scss';
 
-import { ICardItem } from '../../components/PokemonCard/interface';
-import { IData, IPokemonData } from './interface';
+import { useData } from '../../hook/getData';
+import { IPokemonData, PokemonRequest } from '../../interface/pokemon';
+import useDebounce from '../../hook/useDebounce';
 
-const usePokemons = () => {
-  const [data, setData] = useState<IData | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      setIsLoading(true);
-      // const url = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
-      try {
-        const result: IData = await req<IData>('getPokemons');
-        setData(result);
-      } catch {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getPokemons();
-  }, []);
-
-  return {
-    data,
-    isError,
-    isLoading,
-  };
-};
+interface IQuery {
+  name?: string;
+  limit?: number;
+}
 
 function PokedexPage() {
-  const { data, isError, isLoading }: IPokemonData = usePokemons();
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState<IQuery>({ limit: 12 });
+
+  const debounceValue = useDebounce(searchValue, 500);
+
+  const { data, isError, isLoading }: IPokemonData = useData('getPokemons', query, [debounceValue]);
   if (isLoading) {
     return <div className={s.root}>Loading...</div>;
   }
   if (isError) {
     return <div className={s.root}>Error! Data not loaded!</div>;
   }
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedValue = event.target.value;
+    setSearchValue(updatedValue);
+    setQuery((state: IQuery) => ({
+      ...state,
+      name: updatedValue,
+    }));
+  };
   return (
     <div className={s.root}>
       <Heading>
-        {data?.total ? (
+        {!isLoading && typeof data?.total === 'number' ? (
           <h4>
             Total count is <b>{data?.total}</b>
           </h4>
@@ -56,8 +45,11 @@ function PokedexPage() {
           <></>
         )}
       </Heading>
+      <div>
+        <input type="text" value={searchValue} onChange={handleSearchChange} />
+      </div>
       <div className={s.content}>
-        {((data?.pokemons as ICardItem[]) || []).map((item: ICardItem) => (
+        {((!isLoading && (data?.pokemons as PokemonRequest[])) || []).map((item: PokemonRequest) => (
           <PokemonCard key={item.name_clean} item={item} />
         ))}
       </div>
