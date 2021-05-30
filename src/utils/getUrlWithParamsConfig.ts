@@ -31,12 +31,6 @@ export default function getUrlWithParamsConfig(endpointConfig: string, params: o
     ...params,
   };
 
-  // const url = {
-  //   ...config.client.server,
-  //   ...config.client.endpoint[endpointConfig as keyof typeof config.client.endpoint].uri,
-  //   query: {},
-  // };
-
   const pathName = Object.keys(query).reduce((acc, value) => {
     const strValue = `{${value}}`;
     if (acc.indexOf(strValue) !== -1) {

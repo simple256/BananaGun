@@ -52,4 +52,22 @@ describe('getUrlWithParamsConfig', () => {
       });
     },
   );
+  test(
+    'Должна принимать 2 аргумента: "getPokemon" и { id: 25 }, ' +
+      'а на выходе получать объект с полями pathname = "/api/v1/pokemon/25", protocol, host и query равное {}',
+    () => {
+      const query = { id: 25 };
+      const url = getUrlWithParamsConfig('createPokemon', query);
+      expect(url).toEqual({
+        method: 'POST',
+        uri: {
+          protocol: 'http',
+          host: 'zar.hosthot.ru',
+          pathname: '/api/v1/pokemon/create',
+          query: {},
+        },
+        body: { ...query },
+      });
+    },
+  );
 });
