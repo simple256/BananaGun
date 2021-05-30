@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import cn from 'classnames';
+import s from './Heading.module.scss';
 
-import './Heading.module.scss';
-
-interface IHeading {
-  children: JSX.Element;
-  className?: string;
+interface IHeadingLevel {
+  [n: string]: number;
 }
 
-const Heading: React.FC<IHeading> = ({ children, className }) => {
-  if (!(children?.type && children?.props?.children)) {
-    return <></>;
-  }
-  return React.createElement(children?.type, { className }, children.props.children);
+interface IHeadingProps {
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  className?: string;
+  children?: ReactElement;
+}
+
+const HEADING_LEVEL: IHeadingLevel = {
+  xl: 1,
+  l: 2,
+  m: 3,
+  s: 4,
+  xs: 5,
+};
+
+const Heading: React.FC<IHeadingProps> = ({ children, size, className }) => {
+  const sizeOrDefault = size || 'm';
+
+  const headingProps = {
+    className: cn(s[sizeOrDefault], className),
+  };
+
+  return React.createElement(`h${HEADING_LEVEL[sizeOrDefault]}`, headingProps, children);
 };
 
 export default React.memo(Heading);
