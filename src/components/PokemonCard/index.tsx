@@ -4,13 +4,14 @@ import Heading from '../Heading';
 import { IPokemonCard } from './interface';
 
 import s from './PokemonCard.module.scss';
+import toCapitalizeFirstLetter from '../../utils/formatter';
 
 const PokemonCard: FC<IPokemonCard> = ({ item }) => {
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
         <Heading size="s" className={s.titleName}>
-          <>{item.name}</>
+          <>{toCapitalizeFirstLetter(item.name)}</>
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
