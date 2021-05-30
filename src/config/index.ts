@@ -10,7 +10,12 @@ export const config = {
         uri: {
           pathname: '/api/v1/pokemons',
         },
-        query: 'limit=100',
+      },
+      getPokemon: {
+        method: 'GET',
+        uri: {
+          pathname: '/api/v1/pokemon/{id}',
+        },
       },
     },
   },
