@@ -7,7 +7,7 @@ $h5: 18px;
 $h6: 12px;
 $paragraph: 16px;
 
-:is(h1, h2, h3, h4, h5, h6) {
+:is(.xl, .l, .m, .s, .xs) {
   font-weight: 400;
   padding: 0;
   margin: 0;
@@ -15,26 +15,29 @@ $paragraph: 16px;
   font-style: normal;
 }
 
-h1 {
+.xl {
   font-size: $h1;
   line-height: 84px;
   letter-spacing: 4px;
 }
 
-h2 {
+.l {
   font-size: $h2;
 }
 
-h3 {
+.m {
   font-size: $h3;
   font-weight: normal;
   line-height: 42px;
 }
 
-h4 {
+.s {
   font-size: $h4;
 }
 
-h5 {
+.xs {
   font-size: $h5;
+}
+
+.heading {
 }

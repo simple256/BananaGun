@@ -9,8 +9,8 @@ const PokemonCard: FC<IPokemonCard> = ({ item }) => {
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
-        <Heading className={s.titleName}>
-          <h1>{item.name}</h1>
+        <Heading size="s" className={s.titleName}>
+          <>{item.name}</>
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>

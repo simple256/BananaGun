@@ -36,20 +36,22 @@ function PokedexPage() {
   };
   return (
     <div className={s.root}>
-      <Heading>
-        {!isLoading && typeof data?.total === 'number' ? (
-          <h4>
-            Total count is <b>{data?.total}</b>
-          </h4>
-        ) : (
-          <></>
-        )}
+      <Heading size="m" className={s.inputTitle}>
+        <div>
+          {data?.total} <b>Pokemons</b> for you to choose your favorite
+        </div>
       </Heading>
-      <div>
-        <input type="text" value={searchValue} onChange={handleSearchChange} />
+      <div className={s.inputContainer}>
+        <input
+          className={s.inputField}
+          placeholder="Encuentra tu pokémon..."
+          type="text"
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
       </div>
       <div className={s.content}>
-        {((!isLoading && (data?.pokemons as PokemonRequest[])) || []).map((item: PokemonRequest) => (
+        {((data?.pokemons as PokemonRequest[]) || []).map((item: PokemonRequest) => (
           <PokemonCard key={item.name_clean} item={item} />
         ))}
       </div>
