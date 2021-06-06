@@ -3,16 +3,15 @@ import path from 'path';
 import handlebars from 'handlebars';
 import Hapi from '@hapi/hapi';
 import ReactDom from 'react-dom/server';
-import App from '../App';
+import {setPath} from 'hookrouter';
 import React from 'react';
-import { setPath } from 'hookrouter';
-
-import EmptyPage from '../pages/Empty';
+import App from '../App';
 
 const init = async () => {
+
   const server = Hapi.server({
     port: 3000,
-    host: 'localhost',
+    host: 'localhost'
   });
 
   await server.register(require('@hapi/inert'));
@@ -20,27 +19,24 @@ const init = async () => {
   server.route({
     method: 'GET',
     path: '/main.js',
-    handler: (request, h) => {
-      const a = h.file(path.join(process.cwd(), 'dist', 'main.js'));
-      console.log(a);
-    },
-  });
+    handler: (request, h) => h.file(path.join(process.cwd(), 'dist', 'main.js'))
+  })
 
   server.route({
     method: 'GET',
     path: '/{any*}',
     handler: (request, h) => {
       setPath(request.path);
-      const pathIndexHTML = path.join(process.cwd(), 'dist', 'index.html');
-      const template = handlebars.compile(fs.readFileSync(pathIndexHTML, 'utf8'));
 
-      const res = ReactDom.renderToString(<EmptyPage />);
+      const pathIndexHTML = path.join(process.cwd(), 'dist', 'index.html');
+      const template = handlebars.compile(fs.readFileSync(pathIndexHTML, 'utf-8'))
+
+      const result = ReactDom.renderToString(<App />);
       const page = template({
-        content: res,
-      });
-      console.log(page);
+        content: result
+      })
       return page;
-    },
+    }
   });
 
   await server.start();
@@ -48,6 +44,7 @@ const init = async () => {
 };
 
 process.on('unhandledRejection', (err) => {
+
   console.log(err);
   process.exit(1);
 });

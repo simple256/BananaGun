@@ -1,23 +1,20 @@
 const path = require('path');
-const NODE_ENV = process.env.NODE_ENV;
 const nodeExternals = require('webpack-node-externals');
+
+const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
   target: 'node',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
-  externals: [nodeExternals()],
   mode: NODE_ENV ? NODE_ENV : 'development',
   entry: path.resolve(__dirname, 'src/server/server.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'server.js',
   },
-  watchOptions: {
-    ignored: /node_modules/,
-    poll: 1000,
-  },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
@@ -34,6 +31,7 @@ module.exports = {
          * Примечание: Сначала css-loader затем style-loader используется
          */
         use: [
+          'css-modules-typescript-loader?modules',
           {
             loader: 'css-loader',
             options: {
@@ -69,4 +67,5 @@ module.exports = {
       },
     ],
   },
+  devtool: 'source-map',
 };

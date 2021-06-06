@@ -13,7 +13,7 @@ module.exports = {
     filename: 'main.js',
   },
   watchOptions: {
-    ignored: /node_modules/,
+    ignored: [/node_modules/, path.resolve(__dirname, 'src/server/server.js')],
     poll: 1000,
   },
   module: {
